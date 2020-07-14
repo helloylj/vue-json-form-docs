@@ -32,6 +32,21 @@ export default {
             'type': 'array',
             'title': '多选框',
             'enum': ['option1', 'option2']
+          },
+          "phoneField": {
+            "type": "object",
+            "title": "手机号码",
+            "properties": {
+              "area": {
+                "type": "string",
+                "title": "区号",
+                "enum": ["0086", "00852"]
+              },
+              "phone": {
+                "type": "string",
+                "title": "号码"
+              },
+            }
           }
         },
         form: [
@@ -48,11 +63,33 @@ export default {
               'option1': '选项1',
               'option2': '选项2'
             }
+          },
+          {
+            "type": "phone",
+            "key": "phoneField",
+            "items": [
+              {
+                "type": "select",
+                "key": "area",
+                "titleMap": {
+                  "0086": "+86",
+                  "00852": "+852"
+                }
+              },
+              {
+                "type": "number",
+                "key": "phone"
+              }
+            ]
           }
         ],
         value: {
           name: '',
-          checkboxField: []
+          checkboxField: [],
+          "phoneField": {
+            "area": "0086",
+            "phone": ""
+          }
         }
       }
     }
@@ -62,11 +99,16 @@ export default {
       this.status = false
       setTimeout(() => {
         this.status = true
-      }, 100);
+      }, 200);
     },
     async submit () {
       const validateStatus = await this.$refs['form1'].validateForm()
-      console.log(validateStatus)
+      console.log('validateStatus', validateStatus)
+
+      if (true) {
+        console.log('formdata', this.formdata)
+
+      }
     }
   }
 }
@@ -76,6 +118,11 @@ export default {
   height: 100%;
   width: 100%;
   display: flex;
+  font-size: 15px;
+}
+.md-cell-item-content {
+  font-size: 15px !important;
+  min-width: 80px;
 }
 .input {
   width: 50%;
@@ -90,5 +137,15 @@ textarea {
 }
 .show {
   width: 50%;
+  text-align: center;
+}
+@media screen and (max-width: 500px) {
+  .about {
+    flex-direction: column;
+  }
+  .input,
+  .show {
+    width: 100%;
+  }
 }
 </style>

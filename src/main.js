@@ -5,7 +5,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-import vjf, { VJFStore } from '../../vue-form-create/src'
+import vjf, { VJFStore } from 'vue-json-form-create'
+// import vjf, { VJFStore } from '../../vue-form-create/src'
+
 
 Vue.use(Vuex)
 Vue.use(vjf)
