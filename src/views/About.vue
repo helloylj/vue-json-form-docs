@@ -47,6 +47,11 @@ export default {
                 "title": "号码"
               },
             }
+          },
+          actionSheetField: {
+            'type': 'array',
+            'title': '动作面板',
+            'enum': ['option1', 'option2']
           }
         },
         form: [
@@ -81,6 +86,16 @@ export default {
                 "key": "phone"
               }
             ]
+          },
+          {
+            'key': 'actionSheetField',
+            'type': 'action-sheet',
+            required: true,
+            'titleMap': {
+              'option1': '选项1',
+              'option2': '选项2'
+            },
+            placeholder: '请选择'
           }
         ],
         value: {
